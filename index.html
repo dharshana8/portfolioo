@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dharshana S — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<div id="toast"></div>
+<div class="page-loader"><div class="loader-text">DS</div></div>
+
+<nav id="nav">
+  <div class="logo">DS<span class="logo-dot">.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="assets/Dharsh_resume1111-1.pdf" class="nav-resume" download>Resume ↓</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge reveal-up">
+      <span class="badge-dot"></span>
+      Available for opportunities
+    </div>
+    <h1 class="reveal-up">
+      <span class="h1-line">Full Stack</span>
+      <span class="h1-line gradient-text">Developer</span>
+    </h1>
+    <p class="hero-name reveal-up">Dharshana S</p>
+    <p class="hero-sub reveal-up">B.Tech CSBS · Sri Eshwar College of Engineering<br/>Building clean, functional web applications that solve real problems.</p>
+    <div class="hero-ctas reveal-up">
+      <button class="btn-primary mag-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+        <span>View Projects</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <a href="assets/Dharsh_resume1111-1.pdf" class="btn-ghost mag-btn" download>Download Resume</a>
+    </div>
+    <div class="hero-stats reveal-up">
+      <div class="stat-item"><span class="stat-n" data-count="4">0</span><span class="stat-plus">+</span><span class="stat-l">Projects</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat-item"><span class="stat-n" data-count="110">0</span><span class="stat-plus">+</span><span class="stat-l">LeetCode</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat-item"><span class="stat-n" data-count="900">0</span><span class="stat-plus">+</span><span class="stat-l">SkillRack</span></div>
+    </div>
+  </div>
+  <div class="hero-right reveal-right">
+    <div class="photo-container">
+      <div class="photo-ring"></div>
+      <div class="photo-frame">
+        <img src="assets/WhatsApp Image 2025-12-09 at 09.09.10_9cb5a1e3.jpg" alt="Dharshana S" onerror="this.style.display='none'"/>
+      </div>
+      <div class="photo-card pc1"><span>CGPA</span><strong>8.28</strong></div>
+      <div class="photo-card pc2"><span>Rank</span><strong>#314,893</strong></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="section-header">
+    <div class="sec-num">01</div>
+    <div class="sec-label">About Me</div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="reveal-up">Who I Am</h2>
+      <p class="reveal-up">I'm a B.Tech CSBS student at Sri Eshwar College of Engineering with a CGPA of 8.28. I build full-stack web applications that are fast, clean, and solve real problems.</p>
+      <p class="reveal-up">I completed a MERN Stack Winter Internship at Bytes India Software Service, independently building production-ready systems with backend logic and database integration.</p>
+      <p class="reveal-up">I enjoy competitive coding, hackathons, and continuously learning new technologies.</p>
+      <div class="about-links reveal-up">
+        <a href="https://github.com/dharshana8" target="_blank" class="alink">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/dharshana-s-649700314" target="_blank" class="alink">LinkedIn ↗</a>
+        <a href="https://leetcode.com/u/dharshana03/" target="_blank" class="alink">LeetCode ↗</a>
+      </div>
+    </div>
+    <div class="edu-box reveal-up">
+      <div class="edu-head">Education</div>
+      <div class="edu-item">
+        <div class="edu-yr">2024 – 2028</div>
+        <div class="edu-title">B.Tech CSBS</div>
+        <div class="edu-place">Sri Eshwar College of Engineering</div>
+        <div class="edu-score">CGPA: 8.28</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-yr">2023 – 2024</div>
+        <div class="edu-title">HSC</div>
+        <div class="edu-place">Vivek Vidyalaya Matric Hr. Sec. School</div>
+        <div class="edu-score">85%</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-yr">2021 – 2022</div>
+        <div class="edu-title">SSLC</div>
+        <div class="edu-place">Kids Park Matric Hr. Sec. School</div>
+        <div class="edu-score">87%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="experience-section dark-section">
+  <div class="section-header light">
+    <div class="sec-num">02</div>
+    <div class="sec-label">Experience</div>
+  </div>
+  <h2 class="reveal-up light-text">Internship</h2>
+  <div class="exp-card reveal-up">
+    <div class="exp-tag">Dec 2025</div>
+    <div class="exp-role">MERN Stack Developer Intern</div>
+    <div class="exp-co">Bytes India Software Service</div>
+    <div class="exp-divider"></div>
+    <ul class="exp-pts">
+      <li>Developed full-stack web applications using the MERN stack.</li>
+      <li>Independently built a user-friendly system to improve efficiency and workflow.</li>
+      <li>Implemented backend logic and database integration for secure operations.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects-section">
+  <div class="section-header">
+    <div class="sec-num">03</div>
+    <div class="sec-label">Projects</div>
+  </div>
+  <h2 class="reveal-up">What I've Built</h2>
+  <div class="projects-grid" id="projects-grid"></div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section dark-section">
+  <div class="section-header light">
+    <div class="sec-num">04</div>
+    <div class="sec-label">Skills</div>
+  </div>
+  <h2 class="reveal-up light-text">Skills & Tools</h2>
+  <div class="skills-marquee-wrap">
+    <div class="skills-marquee">
+      <div class="marquee-track" id="marquee1"></div>
+    </div>
+    <div class="skills-marquee reverse">
+      <div class="marquee-track" id="marquee2"></div>
+    </div>
+  </div>
+  <div class="skills-table reveal-up">
+    <div class="sk-row"><div class="sk-cat">Programming</div><div class="sk-vals">C · C++ · Python · Java</div></div>
+    <div class="sk-row"><div class="sk-cat">Core Concepts</div><div class="sk-vals">DSA · OOP · DAA · DBMS</div></div>
+    <div class="sk-row"><div class="sk-cat">Web</div><div class="sk-vals">HTML · CSS · JavaScript · React · Node.js · Express.js · Spring Boot</div></div>
+    <div class="sk-row"><div class="sk-cat">Database</div><div class="sk-vals">MySQL · MongoDB</div></div>
+    <div class="sk-row"><div class="sk-cat">Tools</div><div class="sk-vals">VS Code · Git · GitHub · Postman · Canva · Excel · PowerPoint · Jupyter Notebook</div></div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="ach-section">
+  <div class="section-header">
+    <div class="sec-num">05</div>
+    <div class="sec-label">Achievements & Certifications</div>
+  </div>
+  <h2 class="reveal-up">Wins & Milestones</h2>
+  <div class="ach-cols">
+    <div>
+      <div class="col-head reveal-up">Hackathons</div>
+      <div id="ach-list" class="ach-list"></div>
+      <div class="col-head reveal-up" style="margin-top:2.5rem">Coding Profiles</div>
+      <div class="coding-list">
+        <a href="https://leetcode.com/u/dharshana03/" class="coding-item reveal-up" target="_blank">
+          <span class="ci-name">LeetCode</span><span class="ci-d">110+ solved · Rank 314,893 →</span>
+        </a>
+        <a href="https://www.hackerrank.com/profile/dharshana_s20241" class="coding-item reveal-up" target="_blank">
+          <span class="ci-name">HackerRank</span><span class="ci-d">3 Certificates · 2-Star SQL →</span>
+        </a>
+        <a href="#" class="coding-item reveal-up">
+          <span class="ci-name">SkillRack</span><span class="ci-d">900+ solved · 250+ Bronzes →</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="col-head reveal-up">Certifications</div>
+      <div id="cert-list" class="cert-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section dark-section">
+  <div class="section-header light">
+    <div class="sec-num">06</div>
+    <div class="sec-label">Contact</div>
+  </div>
+  <h2 class="reveal-up light-text">Let's Work Together</h2>
+  <p class="contact-sub reveal-up">Open to internships, collaborations, and exciting projects.</p>
+  <div class="contact-inner">
+    <div class="contact-form reveal-up">
+      <div class="form-group"><label>Name</label><input type="text" id="f-name" placeholder="Your name"/></div>
+      <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Message</label><textarea id="f-msg" rows="5" placeholder="Tell me about your project..."></textarea></div>
+      <button class="send-btn mag-btn" onclick="handleSend()">Send Message →</button>
+    </div>
+    <div class="contact-info reveal-up">
+      <div class="ci-row"><div class="ci-l">Email</div><div class="ci-v">dharshana.s2024csbs@sece.ac.in</div></div>
+      <div class="ci-row"><div class="ci-l">Phone</div><div class="ci-v">+91 6382078407</div></div>
+      <div class="ci-row"><div class="ci-l">Location</div><div class="ci-v">Tamil Nadu, India</div></div>
+      <div class="social-row">
+        <a href="https://github.com/dharshana8" class="soc-btn" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/dharshana-s-649700314" class="soc-btn" target="_blank">LinkedIn</a>
+        <a href="https://leetcode.com/u/dharshana03/" class="soc-btn" target="_blank">LeetCode</a>
+        <a href="https://www.hackerrank.com/profile/dharshana_s20241" class="soc-btn" target="_blank">HackerRank</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built by <strong>Dharshana S</strong> · 2025</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
