@@ -33,6 +33,89 @@ document.addEventListener('click', e => {
   setTimeout(() => r.remove(), 600);
 });
 
+/* ── PARTICLES ── */
+function initParticles() {
+  const container = document.getElementById('particles-bg');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%;
+      animation-duration:${Math.random() * 15 + 10}s;
+      animation-delay:-${Math.random() * 20}s;
+      opacity:${Math.random() * 0.5 + 0.1};
+    `;
+    container.appendChild(p);
+  }
+}
+
+/* ── TYPING ANIMATION ── */
+function initTyping() {
+  const words = ['Developer', 'Engineer', 'Problem Solver', 'MERN Dev'];
+  const el = document.getElementById('typed-text');
+  if (!el) return;
+  let wi = 0, ci = 0, deleting = false;
+
+  function type() {
+    const word = words[wi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  setTimeout(type, 1200);
+}
+
+/* ── 3D TILT ── */
+function initTilt() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(600px) rotateY(0) rotateX(0) translateZ(0)';
+      card.style.transition = 'transform .5s ease, box-shadow .35s, border-color .35s';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'box-shadow .35s, border-color .35s';
+    });
+  });
+}
+
+/* ── ACTIVE NAV ON SCROLL ── */
+function initActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+}
+
+/* ── BACK TO TOP ── */
+function initBackTop() {
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
 /* ── PAGE LOADER ── */
 window.addEventListener('load', () => {
   setTimeout(() => document.querySelector('.page-loader').classList.add('done'), 800);
@@ -137,6 +220,14 @@ const projects = [
     year: '2025', github: 'https://github.com/dharshana8',
     bg: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
   },
+  {
+    title: 'GigShield AI',
+    sub: 'Predictive Parametric Insurance Platform',
+    desc: 'AI-driven predictive parametric insurance platform using hyperlocal disruption analysis and automated payouts to protect gig workers from income loss before and during external disruptions.',
+    tags: ['AI', 'React', 'Node.js', 'ML'],
+    year: '2025', github: 'https://github.com/dharshana8',
+    bg: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
+  },
 ];
 
 function renderProjects() {
@@ -165,6 +256,7 @@ function renderProjects() {
 
 /* ── ACHIEVEMENTS DATA ── */
 const achievements = [
+  { title: 'DevTrails — GigShield AI', desc: 'Built GigShield AI, a predictive parametric insurance platform for gig workers. Reached Round 3 out of the competition.', year: '2025' },
   { title: 'Smart India Hackathon', desc: 'Selected in Top 50 teams at college level among 400+ competing teams.', year: '2025' },
   { title: '24hr Hackathon', desc: 'Participated at Sri Shakthi Institute of Engineering and Technology.', year: '2026' },
   { title: 'Freshathon', desc: 'Participated at Sri Eshwar College of Engineering.', year: '2025' },
@@ -191,6 +283,7 @@ function renderAchievements() {
 /* ── CERTS DATA ── */
 const certs = [
   { name: 'Problem Solving Through Programming in C', org: 'NPTEL', year: '2025' },
+  { name: 'Design Thinking — Top 2% Topper', org: 'NPTEL', year: '2025' },
   { name: 'C++', org: 'Sololearn', year: '2025' },
   { name: 'Python', org: 'Sololearn & HackerRank', year: '2025' },
   { name: 'Introduction to SQL', org: 'Sololearn', year: '2025' },
@@ -236,7 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCerts();
   buildMarquee('marquee1', marqueeItems1);
   buildMarquee('marquee2', marqueeItems2);
-  initCardGlow();
+  initParticles();
+  initTyping();
+  initTilt();
+  initActiveNav();
+  initBackTop();
 
   document.querySelectorAll('.reveal-up, .reveal-right').forEach(el => revealObserver.observe(el));
   document.querySelectorAll('.stat-n').forEach(el => counterObserver.observe(el));

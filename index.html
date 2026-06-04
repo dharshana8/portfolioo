@@ -4,11 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Dharshana S — Full Stack Developer</title>
+<meta name="description" content="Dharshana S — Full Stack Developer & B.Tech CSBS student at Sri Eshwar College of Engineering. Building clean web apps with React, Node.js, Spring Boot & more."/>
+<meta name="keywords" content="Dharshana S, Full Stack Developer, MERN Stack, React, Node.js, Portfolio, Sri Eshwar College"/>
+<meta name="author" content="Dharshana S"/>
+<meta property="og:title" content="Dharshana S — Full Stack Developer"/>
+<meta property="og:description" content="B.Tech CSBS student building clean, functional web applications."/>
+<meta property="og:image" content="assets/WhatsApp Image 2025-12-09 at 09.09.10_9cb5a1e3.jpg"/>
+<meta property="og:type" content="website"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
+<div id="particles-bg"></div>
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 <div id="toast"></div>
@@ -37,7 +45,7 @@
     </div>
     <h1 class="reveal-up">
       <span class="h1-line">Full Stack</span>
-      <span class="h1-line gradient-text">Developer</span>
+      <span class="h1-line gradient-text"><span id="typed-text"></span><span class="typed-cursor">|</span></span>
     </h1>
     <p class="hero-name reveal-up">Dharshana S</p>
     <p class="hero-sub reveal-up">B.Tech CSBS · Sri Eshwar College of Engineering<br/>Building clean, functional web applications that solve real problems.</p>
@@ -49,7 +57,7 @@
       <a href="assets/Dharsh_resume1111-1.pdf" class="btn-ghost mag-btn" download>Download Resume</a>
     </div>
     <div class="hero-stats reveal-up">
-      <div class="stat-item"><span class="stat-n" data-count="4">0</span><span class="stat-plus">+</span><span class="stat-l">Projects</span></div>
+      <div class="stat-item"><span class="stat-n" data-count="5">0</span><span class="stat-plus">+</span><span class="stat-l">Projects</span></div>
       <div class="stat-sep"></div>
       <div class="stat-item"><span class="stat-n" data-count="110">0</span><span class="stat-plus">+</span><span class="stat-l">LeetCode</span></div>
       <div class="stat-sep"></div>
@@ -81,9 +89,9 @@
   <div class="about-grid">
     <div class="about-text">
       <h2 class="reveal-up">Who I Am</h2>
-      <p class="reveal-up">I'm a B.Tech CSBS student at Sri Eshwar College of Engineering with a CGPA of 8.28. I build full-stack web applications that are fast, clean, and solve real problems.</p>
-      <p class="reveal-up">I completed a MERN Stack Winter Internship at Bytes India Software Service, independently building production-ready systems with backend logic and database integration.</p>
-      <p class="reveal-up">I enjoy competitive coding, hackathons, and continuously learning new technologies.</p>
+      <p class="reveal-up">I'm Dharshana Sivakumar — a Computer Science and Business Systems student passionate about technology, innovation, and problem-solving.</p>
+      <p class="reveal-up">I've built projects like an AI-powered coding question generator and Placify, a placement management system that streamlines college placements end-to-end.</p>
+      <p class="reveal-up">I enjoy creating practical solutions, picking up emerging technologies fast, and growing my skills across full-stack development and artificial intelligence. My goal is to become an AI Engineer and build tech that creates real impact.</p>
       <div class="about-links reveal-up">
         <a href="https://github.com/dharshana8" target="_blank" class="alink">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/dharshana-s-649700314" target="_blank" class="alink">LinkedIn ↗</a>
@@ -208,12 +216,6 @@
   <h2 class="reveal-up light-text">Let's Work Together</h2>
   <p class="contact-sub reveal-up">Open to internships, collaborations, and exciting projects.</p>
   <div class="contact-inner">
-    <div class="contact-form reveal-up">
-      <div class="form-group"><label>Name</label><input type="text" id="f-name" placeholder="Your name"/></div>
-      <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="your@email.com"/></div>
-      <div class="form-group"><label>Message</label><textarea id="f-msg" rows="5" placeholder="Tell me about your project..."></textarea></div>
-      <button class="send-btn mag-btn" onclick="handleSend()">Send Message →</button>
-    </div>
     <div class="contact-info reveal-up">
       <div class="ci-row"><div class="ci-l">Email</div><div class="ci-v">dharshana.s2024csbs@sece.ac.in</div></div>
       <div class="ci-row"><div class="ci-l">Phone</div><div class="ci-v">+91 6382078407</div></div>
@@ -225,12 +227,20 @@
         <a href="https://www.hackerrank.com/profile/dharshana_s20241" class="soc-btn" target="_blank">HackerRank</a>
       </div>
     </div>
+    <div class="contact-form reveal-up">
+      <div class="form-group"><label>Name</label><input type="text" id="f-name" placeholder="Your name"/></div>
+      <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Message</label><textarea id="f-msg" rows="5" placeholder="Tell me about your project..."></textarea></div>
+      <button class="send-btn mag-btn" onclick="handleSend()">Send Message →</button>
+    </div>
   </div>
 </section>
 
 <footer>
   <p>Designed & built by <strong>Dharshana S</strong> · 2025</p>
 </footer>
+
+<button id="back-top" aria-label="Back to top">↑</button>
 
 <script src="script.js"></script>
 </body>
