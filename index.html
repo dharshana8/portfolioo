@@ -11,16 +11,18 @@
 <meta property="og:description" content="B.Tech CSBS student building clean, functional web applications."/>
 <meta property="og:image" content="assets/WhatsApp Image 2025-12-09 at 09.09.10_9cb5a1e3.jpg"/>
 <meta property="og:type" content="website"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="anime-theme.css"/>
+<link rel="stylesheet" href="arcade.css"/>
 </head>
 <body>
 
 <div id="particles-bg"></div>
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
+
+
 <div id="toast"></div>
-<div class="page-loader"><div class="loader-text">DS</div></div>
+<div class="page-loader"><div class="loader-content"><div class="loader-text">DHARSHANA S</div><div class="loader-sub">Full Stack Developer</div><div class="loader-dots"><span></span><span></span><span></span></div><div class="loader-bar"><div class="loader-fill"></div></div></div></div>
 
 <nav id="nav">
   <div class="logo">DS<span class="logo-dot">.</span></div>
@@ -31,13 +33,25 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#achievements">Achievements</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><button class="nav-arcade-btn" id="arcade-nav-btn">🎮 Arcade</button></li>
   </ul>
-  <a href="assets/Dharsh_resume1111-1.pdf" class="nav-resume" download>Resume ↓</a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+    <a href="assets/Dharshana_s_resume .pdf" class="nav-resume" download>Resume ↓</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg-grid"></div>
+  <div class="ambient-3d" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+    <span class="wire-cube cube-one"><i></i><i></i><i></i></span>
+    <span class="wire-cube cube-two"><i></i><i></i><i></i></span>
+    <span class="floor-plane"></span>
+  </div>
   <div class="hero-left">
     <div class="hero-badge reveal-up">
       <span class="badge-dot"></span>
@@ -54,14 +68,14 @@
         <span>View Projects</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
-      <a href="assets/Dharsh_resume1111-1.pdf" class="btn-ghost mag-btn" download>Download Resume</a>
+      <a href="assets/Dharshana_s_resume .pdf" class="btn-ghost mag-btn" download>Download Resume</a>
     </div>
     <div class="hero-stats reveal-up">
       <div class="stat-item"><span class="stat-n" data-count="5">0</span><span class="stat-plus">+</span><span class="stat-l">Projects</span></div>
       <div class="stat-sep"></div>
-      <div class="stat-item"><span class="stat-n" data-count="110">0</span><span class="stat-plus">+</span><span class="stat-l">LeetCode</span></div>
+      <div class="stat-item"><span class="stat-n" data-count="170">0</span><span class="stat-plus">+</span><span class="stat-l">LeetCode</span></div>
       <div class="stat-sep"></div>
-      <div class="stat-item"><span class="stat-n" data-count="900">0</span><span class="stat-plus">+</span><span class="stat-l">SkillRack</span></div>
+      <div class="stat-item"><span class="stat-n" data-count="950">0</span><span class="stat-plus">+</span><span class="stat-l">SkillRack</span></div>
     </div>
   </div>
   <div class="hero-right reveal-right">
@@ -70,8 +84,9 @@
       <div class="photo-frame">
         <img src="assets/WhatsApp Image 2025-12-09 at 09.09.10_9cb5a1e3.jpg" alt="Dharshana S" onerror="this.style.display='none'"/>
       </div>
-      <div class="photo-card pc1"><span>CGPA</span><strong>8.28</strong></div>
+      <div class="photo-card pc1"><span>CGPA</span><strong>8.47</strong></div>
       <div class="photo-card pc2"><span>Rank</span><strong>#314,893</strong></div>
+
     </div>
   </div>
   <div class="scroll-hint">
@@ -89,9 +104,8 @@
   <div class="about-grid">
     <div class="about-text">
       <h2 class="reveal-up">Who I Am</h2>
-      <p class="reveal-up">I'm Dharshana Sivakumar — a Computer Science and Business Systems student passionate about technology, innovation, and problem-solving.</p>
-      <p class="reveal-up">I've built projects like an AI-powered coding question generator and Placify, a placement management system that streamlines college placements end-to-end.</p>
-      <p class="reveal-up">I enjoy creating practical solutions, picking up emerging technologies fast, and growing my skills across full-stack development and artificial intelligence. My goal is to become an AI Engineer and build tech that creates real impact.</p>
+      <p class="reveal-up">I'm Dharshana S, a Computer Science and Business Systems student with a strong passion for Artificial Intelligence, Full-Stack Development, and software development. I enjoy building innovative applications that solve real-world problems and continuously challenge me to learn new technologies. My curiosity and enthusiasm for technology drive me to explore modern tools, frameworks, and emerging trends in the field.</p>
+      <p class="reveal-up">I believe in continuous learning, hands-on experience, and turning ideas into impactful solutions. Through academic projects and personal learning, I've gained experience in AI and web development while strengthening my problem-solving, analytical, and teamwork skills. I'm always eager to take on new challenges, collaborate with others, and create technology that delivers meaningful value.</p>
       <div class="about-links reveal-up">
         <a href="https://github.com/dharshana8" target="_blank" class="alink">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/dharshana-s-649700314" target="_blank" class="alink">LinkedIn ↗</a>
@@ -104,7 +118,7 @@
         <div class="edu-yr">2024 – 2028</div>
         <div class="edu-title">B.Tech CSBS</div>
         <div class="edu-place">Sri Eshwar College of Engineering</div>
-        <div class="edu-score">CGPA: 8.28</div>
+        <div class="edu-score">CGPA: 8.47</div>
       </div>
       <div class="edu-item">
         <div class="edu-yr">2023 – 2024</div>
@@ -190,13 +204,13 @@
       <div class="col-head reveal-up" style="margin-top:2.5rem">Coding Profiles</div>
       <div class="coding-list">
         <a href="https://leetcode.com/u/dharshana03/" class="coding-item reveal-up" target="_blank">
-          <span class="ci-name">LeetCode</span><span class="ci-d">110+ solved · Rank 314,893 →</span>
+          <span class="ci-name">LeetCode</span><span class="ci-d">170+ solved · Rank 314,893 →</span>
         </a>
         <a href="https://www.hackerrank.com/profile/dharshana_s20241" class="coding-item reveal-up" target="_blank">
           <span class="ci-name">HackerRank</span><span class="ci-d">3 Certificates · 2-Star SQL →</span>
         </a>
         <a href="#" class="coding-item reveal-up">
-          <span class="ci-name">SkillRack</span><span class="ci-d">900+ solved · 250+ Bronzes →</span>
+          <span class="ci-name">SkillRack</span><span class="ci-d">950+ solved · 250+ Bronzes →</span>
         </a>
       </div>
     </div>
@@ -237,11 +251,137 @@
 </section>
 
 <footer>
-  <p>Designed & built by <strong>Dharshana S</strong> · 2025</p>
+  <p>Designed & built by <strong>Dharshana S</strong></p>
 </footer>
 
 <button id="back-top" aria-label="Back to top">↑</button>
 
+<!-- Floating Arcade Launch Controller Widget -->
+<button class="floating-arcade-btn" id="floating-arcade-btn" aria-label="Open Dev Arcade">
+  <span class="arcade-icon">🎮</span>
+  <span class="lbl">Dev Arcade</span>
+  <span class="xp-badge-mini">⭐ 0 XP</span>
+</button>
+
+<!-- Global Confetti Canvas Overlay -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Achievement Unlocked Toast Notification -->
+<div id="achievement-toast" class="achievement-toast">
+  <div class="ach-toast-icon">🏆</div>
+  <div class="ach-toast-details">
+    <div class="label">Achievement Unlocked!</div>
+    <div class="title">Title</div>
+    <div class="desc">Description</div>
+  </div>
+</div>
+
+<!-- Arcade Modal Backdrop & Container -->
+<div id="arcade-modal-backdrop" class="arcade-modal-backdrop">
+  <div class="arcade-modal-container">
+    
+    <!-- Arcade Header -->
+    <div class="arcade-header">
+      <div class="arcade-brand">
+        <div class="arcade-logo-icon">🎮</div>
+        <div class="arcade-title-text">
+          <h3>Dev Arcade Hub</h3>
+          <p>Interactive Arcade & Gamified Experience</p>
+        </div>
+      </div>
+      <div class="arcade-xp-tracker">
+        <span class="xp-level-badge">LVL 1</span>
+        <div class="xp-progress-bar-wrap">
+          <div class="xp-progress-bar-fill"></div>
+        </div>
+        <span class="xp-val-text">0 XP</span>
+      </div>
+      <div class="arcade-header-controls">
+        <button class="arcade-btn-icon sound-toggle-btn" title="Toggle Sound FX">🔊</button>
+        <button class="arcade-btn-icon" id="arcade-close-btn" title="Close Arcade">✕</button>
+      </div>
+    </div>
+
+    <!-- Arcade Tab Navigation -->
+    <div class="arcade-tabs-nav">
+      <button class="arcade-tab-btn active" data-tab="bugsmasher">👾 Bug Smasher</button>
+      <button class="arcade-tab-btn" data-tab="terminal">💻 Cyber Terminal</button>
+      <button class="arcade-tab-btn" data-tab="bouncer">🔮 Bubble Bouncer</button>
+      <button class="arcade-tab-btn" data-tab="achievements">🏆 Achievements</button>
+    </div>
+
+    <!-- Arcade Content Pages -->
+    <div class="arcade-content-body">
+      
+      <!-- TAB 1: BUG SMASHER -->
+      <div class="arcade-tab-page active" id="tab-page-bugsmasher">
+        <div class="game-bug-container">
+          <div class="game-hud">
+            <div class="hud-stat"><span class="label">SCORE:</span><span class="value" id="bug-hud-score">0</span></div>
+            <div class="hud-stat"><span class="label">COMBO:</span><span class="value" id="bug-hud-combo">0x</span></div>
+            <div class="hud-stat"><span class="label">LIVES:</span><span class="lives-container" id="bug-hud-lives">❤️❤️❤️</span></div>
+          </div>
+          <div class="bug-canvas-wrapper">
+            <canvas id="bug-smasher-canvas"></canvas>
+            
+            <!-- Start Screen Overlay -->
+            <div class="game-overlay-screen" id="bug-start-overlay">
+              <h2>MERN Bug Smasher</h2>
+              <p>Catch & slice falling bugs (Syntax Error 🐛, Memory Leak 👾, Null Pointer 🐞) before they reach the bottom! Collect tech powerups (React ⚛️, Mongo 🍃)!</p>
+              <button class="arcade-btn-primary" id="bug-start-btn">Start Smash Session ▶</button>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="game-overlay-screen" id="bug-gameover-overlay" style="display:none;">
+              <h2>Game Over!</h2>
+              <p class="final-score">Final Score: 0</p>
+              <button class="arcade-btn-primary" id="bug-restart-btn">Play Again 🔄</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CYBER TERMINAL -->
+      <div class="arcade-tab-page" id="tab-page-terminal">
+        <div class="crt-terminal-container">
+          <canvas id="matrix-rain-canvas"></canvas>
+          <div class="terminal-window" id="terminal-window-body">
+            <div class="terminal-line accent">DHARSHANA S - CYBER TERMINAL OS v2.0</div>
+            <div class="terminal-line system-output">Type <span class="accent">'help'</span> for available commands, <span class="accent">'skills'</span> to inspect tech stack, or <span class="accent">'easteregg'</span> for secrets.</div>
+          </div>
+          <div class="terminal-input-row">
+            <span class="term-prompt">dharshana@portfolio:~$</span>
+            <input type="text" id="terminal-cli-input" class="terminal-input" placeholder="Type a command (e.g. help, skills, projects, hire)..." autocomplete="off"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: BUBBLE BOUNCER -->
+      <div class="arcade-tab-page" id="tab-page-bouncer">
+        <div class="bubble-bouncer-wrapper">
+          <div class="bubble-hud">
+            <div class="bubble-hud-text">Pop 5 skill bubbles to unlock <strong>Bubble Popper</strong>! Mouse hover repels bubbles.</div>
+            <button class="arcade-btn-primary" id="bubble-reset-btn" style="padding: 6px 16px; font-size: 0.82rem;">Reset Bubbles 🔄</button>
+          </div>
+          <canvas id="bubble-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- TAB 4: ACHIEVEMENTS -->
+      <div class="arcade-tab-page" id="tab-page-achievements">
+        <div class="achievements-grid-wrapper">
+          <div class="achievements-grid" id="achievements-grid-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="arcade.js"></script>
 </body>
 </html>

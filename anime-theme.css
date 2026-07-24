@@ -1,0 +1,125 @@
+/* ── ENHANCED THEME LAYER ── */
+
+/* Rounded font for key elements */
+h1, h2, .logo, .stat-n, .edu-title, .exp-role, .ci-name {
+  font-family: 'M PLUS Rounded 1c', 'Inter', sans-serif;
+}
+
+/* ── HERO: animated gradient orbs ── */
+.hero::before, .hero::after {
+  content: ''; position: absolute; border-radius: 50%;
+  pointer-events: none; z-index: 0; filter: blur(80px);
+  animation: orb-drift 10s ease-in-out infinite alternate;
+}
+.hero::before {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,.1), transparent 70%);
+  top: -100px; right: -100px;
+}
+.hero::after {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(167,139,250,.08), transparent 70%);
+  bottom: 0; left: -80px;
+  animation-delay: -5s;
+}
+@keyframes orb-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.1); }
+}
+
+/* ── NAV: glass border on scroll ── */
+nav.scrolled {
+  box-shadow: 0 1px 0 var(--border), 0 4px 24px rgba(124,58,237,.06);
+}
+
+/* ── HERO BADGE: subtle glow ── */
+.hero-badge {
+  box-shadow: 0 2px 12px rgba(124,58,237,.12);
+  transition: box-shadow .3s;
+}
+.hero-badge:hover { box-shadow: 0 4px 20px rgba(124,58,237,.2); }
+
+/* ── SEND BUTTON ── */
+.send-btn {
+  border-radius: 12px !important;
+  transition: all .3s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.send-btn:hover { transform: translateY(-3px) scale(1.02) !important; }
+
+/* ── NAV RESUME BUTTON ── */
+.nav-resume {
+  border-radius: 10px;
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.nav-resume:hover { transform: translateY(-2px); }
+
+/* ── PROJECT CARD: glow line at bottom on hover ── */
+.project-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+  opacity: 0; transition: opacity .4s;
+}
+.project-card:hover::before { opacity: 1; }
+
+/* ── SECTION NUMBERS: gradient ── */
+.sec-num {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* ── SKILLS TABLE: left accent bar on hover ── */
+.sk-row {
+  transition: background .2s, padding-left .2s;
+  position: relative;
+}
+.sk-row::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0; background: var(--accent);
+  transition: width .25s;
+}
+.sk-row:hover::before { width: 3px; }
+
+/* ── CODING & ACH ITEMS: smooth lift ── */
+.coding-item, .ach-item {
+  transition: border-color .25s, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .25s !important;
+}
+.coding-item:hover, .ach-item:hover {
+  transform: translateX(6px) !important;
+}
+
+/* ── PHOTO RING: gradient border ── */
+.photo-ring {
+  border: none !important;
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent));
+  background-size: 200% 200%;
+  animation: ring-rotate 8s linear infinite, gradient-shift 4s ease infinite !important;
+  padding: 1px;
+  box-shadow: 0 0 30px rgba(124,58,237,.15) !important;
+}
+@keyframes gradient-shift {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ── PHOTO CARDS: float animation ── */
+.pc1 { animation: float-card 4s ease-in-out infinite; }
+.pc2 { animation: float-card 4s ease-in-out infinite reverse; animation-delay: -2s; }
+@keyframes float-card {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after, .pc1, .pc2 { animation: none !important; }
+}

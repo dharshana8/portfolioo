@@ -1,28 +1,3 @@
-/* ── CURSOR ── */
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-let mx = 0, my = 0, fx = 0, fy = 0;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px';
-  cursor.style.top  = my + 'px';
-});
-
-function animateFollower() {
-  fx += (mx - fx) * 0.28;
-  fy += (my - fy) * 0.28;
-  follower.style.left = fx + 'px';
-  follower.style.top  = fy + 'px';
-  requestAnimationFrame(animateFollower);
-}
-animateFollower();
-
-document.querySelectorAll('a, button, .project-card, .coding-item, .ach-item, .edu-item').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-});
-
 /* ── CLICK RIPPLE ── */
 document.addEventListener('click', e => {
   const r = document.createElement('div');
@@ -74,23 +49,75 @@ function initTyping() {
 
 /* ── 3D TILT ── */
 function initTilt() {
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(10px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(600px) rotateY(0) rotateX(0) translateZ(0)';
-      card.style.transition = 'transform .5s ease, box-shadow .35s, border-color .35s';
-    });
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'box-shadow .35s, border-color .35s';
-    });
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const surfaces = '.hero-left, .hero-right, .about-text, .edu-box, .exp-card, .project-card, .skills-table, .ach-item, .coding-item, .contact-form, .contact-info';
+  document.querySelectorAll(surfaces).forEach(surface => {
+    surface.classList.add('depth-surface');
+    const move = e => {
+      const r = surface.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      surface.classList.add('is-active');
+      surface.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      surface.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      surface.style.transform = 'perspective(1000px) rotateX(' + (-y * 11) + 'deg) rotateY(' + (x * 11) + 'deg) translateZ(24px)';
+    };
+    const reset = () => {
+      surface.classList.remove('is-active');
+      surface.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+    };
+    surface.addEventListener('pointermove', move, { passive: true });
+    surface.addEventListener('pointerdown', e => { move(e); setTimeout(reset, 480); }, { passive: true });
+    surface.addEventListener('pointerleave', reset, { passive: true });
   });
-}
 
+  const heroLeft = document.querySelector('.hero-left');
+  const heroRight = document.querySelector('.hero-right');
+  const moveCamera = e => {
+    const x = e.clientX / window.innerWidth - .5;
+    const y = e.clientY / window.innerHeight - .5;
+    if (heroLeft && !heroLeft.matches(':hover')) heroLeft.style.transform = 'perspective(1300px) rotateY(' + (x * -7) + 'deg) rotateX(' + (y * 5) + 'deg) translateZ(12px)';
+    if (heroRight && !heroRight.matches(':hover')) heroRight.style.transform = 'perspective(1300px) rotateY(' + (x * 9) + 'deg) rotateX(' + (y * -6) + 'deg) translateZ(30px)';
+  };
+  document.addEventListener('pointermove', moveCamera, { passive: true });
+}
+/* ── INTERACTIVE 3D BACKGROUND ── */
+function initDepthScene() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.getElementById('depth-canvas');
+  const ctx = canvas && canvas.getContext('2d');
+  if (!ctx) return;
+  const points = Array.from({ length: 54 }, () => ({ x: (Math.random() - .5) * 2, y: (Math.random() - .5) * 2, z: Math.random() * 1.6 + .25, size: Math.random() * 1.8 + .7, drift: (Math.random() - .5) * .0007 }));
+  let w, h, dpr, pointerX = 0, pointerY = 0;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function draw(time) {
+    ctx.clearRect(0, 0, w, h);
+    const tone = document.documentElement.getAttribute('data-theme') === 'dark' ? '167,139,250' : '124,58,237';
+    const projected = points.map(p => {
+      const angle = time * .00008 + pointerX * .2;
+      const rx = p.x * Math.cos(angle) - p.z * Math.sin(angle);
+      const rz = p.x * Math.sin(angle) + p.z * Math.cos(angle) + 2.6;
+      return { x: w * .52 + (rx / rz) * w * .68, y: h * .44 + ((p.y + pointerY * .12) / rz) * h * .78, size: p.size / rz };
+    });
+    for (let i = 0; i < projected.length; i++) {
+      for (let j = i + 1; j < projected.length; j++) {
+        const a = projected[i], b = projected[j], distance = Math.hypot(a.x - b.x, a.y - b.y);
+        if (distance < 140) { ctx.strokeStyle = 'rgba(' + tone + ',' + (.28 * (1 - distance / 140)).toFixed(3) + ')'; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+    }
+    projected.forEach(p => { ctx.fillStyle = 'rgba(' + tone + ',.82)'; ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(.7, p.size), 0, Math.PI * 2); ctx.fill(); });
+    points.forEach(p => { p.y += p.drift; if (p.y > 1.1 || p.y < -1.1) p.drift *= -1; });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', e => { pointerX = e.clientX / w - .5; pointerY = e.clientY / h - .5; }, { passive: true });
+  resize(); requestAnimationFrame(draw);
+}
 /* ── ACTIVE NAV ON SCROLL ── */
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
@@ -116,9 +143,29 @@ function initBackTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
+/* ── THEME TOGGLE ── */
+const moonIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+const sunIcon  = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  btn.innerHTML = saved === 'dark' ? sunIcon : moonIcon;
+  btn.textContent = '';
+  btn.innerHTML = saved === 'dark' ? sunIcon : moonIcon;
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    btn.innerHTML = next === 'dark' ? sunIcon : moonIcon;
+  });
+}
+
 /* ── PAGE LOADER ── */
 window.addEventListener('load', () => {
-  setTimeout(() => document.querySelector('.page-loader').classList.add('done'), 800);
+  setTimeout(() => document.querySelector('.page-loader').classList.add('done'), 3000);
 });
 
 /* ── NAV SCROLL ── */
@@ -190,43 +237,43 @@ function buildMarquee(id, items) {
 const projects = [
   {
     title: 'BookMySeat',
-    sub: 'Bus Ticket Booking System',
-    desc: 'Full-stack bus ticket booking app with user/admin roles, real-time seat selection, fare calculation, booking management, and coupon integration.',
+    sub: 'Placement Management System',
+    desc: 'Full-stack bus ticket booking with user/admin roles, real-time seat selection, fare calculation, and coupon integration.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
-    year: '2025', github: 'https://github.com/dharshana8',
+    year: '2025', github: 'https://github.com/dharshana8/BookMySeat',
     bg: 'assets/image.png',
   },
   {
-    title: 'Digital Wallet',
-    sub: 'UPI Payment System',
-    desc: 'Online wallet and UPI payment system with account creation, fund transfer, balance tracking, transaction history, and secure REST APIs.',
-    tags: ['Spring Boot', 'Java', 'MySQL'],
-    year: '2025', github: 'https://github.com/dharshana8',
-    bg: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80',
+    title: 'AI LendingLead Intelligence',
+    sub: 'IDBI Bank Hackathon',
+    desc: 'Predicts high-potential loan customers using ML with intelligent lead scoring and role-based dashboards for Admins, Branch Managers, and Relationship Managers.',
+    tags: ['Python', 'ML', 'React', 'Node.js'],
+    year: '2025', github: 'https://github.com/dharshana8/AI_LendingLead_Intelligence',
+    bg: 'https://as1.ftcdn.net/v2/jpg/00/95/16/92/1000_F_95169255_3LYLeZ36fkzLDWFOtAdJEtHIlPFS6do0.jpg',
   },
   {
     title: 'EvalUI',
-    sub: 'AI Question Generator',
-    desc: 'AI-powered Tutor Dashboard that auto-generates coding questions from uploaded solutions with evaluation rules and rubric scoring.',
+    sub: 'AI-Powered Evaluation Platform',
+    desc: 'Automatically generates coding questions from uploaded solutions and assesses responses in real time with instant feedback, performance analysis, and personalized recommendations.',
     tags: ['React', 'Node.js', 'Express', 'AI APIs'],
-    year: '2026', github: 'https://github.com/dharshana8',
+    year: '2026', github: 'https://github.com/dharshana8/EvalUI',
     bg: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80',
   },
   {
     title: 'Placify',
     sub: 'Placement Management System',
-    desc: 'Placement management platform with student profiles, company listings, application tracking, drive scheduling, and admin dashboards.',
+    desc: 'Placement platform with student profiles, company listings, application tracking, drive scheduling, and admin dashboards.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
-    year: '2025', github: 'https://github.com/dharshana8',
+    year: '2025', github: 'https://github.com/dharshana8/placify',
     bg: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
   },
   {
-    title: 'GigShield AI',
-    sub: 'Predictive Parametric Insurance Platform',
-    desc: 'AI-driven predictive parametric insurance platform using hyperlocal disruption analysis and automated payouts to protect gig workers from income loss before and during external disruptions.',
-    tags: ['AI', 'React', 'Node.js', 'ML'],
-    year: '2025', github: 'https://github.com/dharshana8',
-    bg: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
+    title: 'Placement Preparation Guide',
+    sub: 'Multi-Agent AI System',
+    desc: 'Analyzes resumes, detects skill gaps, creates personalized learning roadmaps, and matches students with relevant job opportunities through AI-driven recommendations.',
+    tags: ['AI', 'Python', 'Multi-Agent', 'ML'],
+    year: '2025', github: 'https://github.com/dharshana8/AI_placement_guide',
+    bg: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80',
   },
 ];
 
@@ -324,6 +371,7 @@ function showToast(msg) {
 
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   renderProjects();
   renderAchievements();
   renderCerts();
